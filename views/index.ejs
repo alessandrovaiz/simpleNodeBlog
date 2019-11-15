@@ -1,0 +1,29 @@
+<%- include partials/header.ejs %>
+<%- include partials/homenavbar.ejs %>
+
+<body>
+    <br>
+    <div class="container">
+            <div class="jumbotron shadow-lg p-3 mb-5 bg-white rounded">
+                    <h2 class="display-4">Cracker Blog</h2>
+                    <p class="lead">Este é meu primeiro blog.</p>
+                    <hr class="my-4">
+                    <p>Ele possui diversos artigos de problemas que enfrento em meu dia na minha carreira de T.I, aproveite!</p>
+                    <a class="btn btn-danger btn-lg" href="#" role="button">Leia mais</a>
+            </div>
+        <br>
+        <% articles.forEach(e=> { %>
+            <div class="card">
+                <div class="card-header">
+                    <h1><%= e.title %></h1>
+                </div>    
+                <div class="card-body">
+                    <a href="<%= e.slug %>" class="btn btn-dark"> Ler artigo</a>
+                </div>
+            </div>
+            <br>
+        <% }) %>
+    </div>
+</body>
+
+<%- include partials/footer.ejs %>
