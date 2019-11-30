@@ -6,4 +6,4 @@ const connection = new Sequelize('cracktrello','root','sysdba',{
     timezone:'-03:00'
 })
 
-module.exports= connection
+module.exports= connection;

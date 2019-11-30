@@ -54,7 +54,8 @@ router.post('/articles/update',(req,res)=>{
     let body = req.body.body;
     let title = req.body.title
     let id = req.body.id;
-    Article.update({body:body,title:title},{where:{id:id}}).then(()=>{
+    let category = req.body.category
+    Article.update({body:body,title:title,slug:slugify(title),categoryId:category},{where:{id:id}}).then(()=>{
         res.redirect('/admin/articles')
     })
 })
@@ -79,6 +80,40 @@ router.get('/admin/articles/edit/:id',(req,res)=>{
     
 
 
+
 })
+
+router.get('/articles/page/:num',(req,res)=>{
+    let page = req.params.num;
+    let offset =0;
+
+    if (isNaN(page) || page ==1 ){
+        offset=0;
+    } else {
+        offset=parseInt(page) * 4 ;
+    }
+
+
+    Article.findAndCountAll({
+        limit: 4,
+        offset: offset
+    }).then(articles=>{
+        let netx;
+        if (offset + 4 >= articles.count){
+            next = false;
+        } else { next = true; }
+
+        let result = {
+            next:next,
+            articles: articles
+        }
+
+        Category.findAll().then((categories)=>{
+            res.render("admin/articles/page",{result:result,categories:categories});
+        })
+    })
+})
+
+
 
 module.exports=router
