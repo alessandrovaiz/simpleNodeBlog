@@ -7,7 +7,9 @@ const connection = require('./database/connection')
 // models
 const Category = require('./categories/Category');
 const Article = require('./articles/Article')
+const User = require('./users/User');
 
+const usersController= require('./users/UserController');
 const categoriesController = require('./categories/CategoriesController')
 const articlesController = require('./articles/ArticlesController')
 //view engine
@@ -29,12 +31,14 @@ connection.authenticate().then(()=>{
 // rotas
 app.use('/',categoriesController);
 app.use('/',articlesController);
+app.use('/',usersController);
 
 app.get('/',(req,res)=>{
     Article.findAll({
         order:[
             ['id','DESC']
-        ]
+        ],
+        limit:4
     
     }).then(articles=>{
         Category.findAll().then((categories)=>{

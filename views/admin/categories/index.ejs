@@ -7,7 +7,7 @@
             <br>
             <a class="btn btn-danger" href="/admin/categories/new">Criar nova categoria</a>
             <hr>
-            <table class="table table-bordered bg-dark tables">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th> ID </th>
@@ -24,7 +24,7 @@
                         <th><%= category.slug %></th>
                         <th> 
                             <div style="text-align: center;">
-                            <a class="btn btn-light" href="/admin/categories/edit/<%= category.id%>">Editar</a> 
+                            <a class="btn btn-dark" href="/admin/categories/edit/<%= category.id%>">Editar</a> 
                                 <form method ="POST" action="/categories/delete" style="display: inline" onsubmit="wantDelete(event,this)">
                                 <input type="hidden" name ="id" value="<%= category.id %>">
                                 <button class="btn btn-danger">Deletar</button>

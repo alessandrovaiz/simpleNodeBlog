@@ -7,7 +7,7 @@
             <br>
             <a class="btn btn-danger" href="/admin/articles/new">Criar novo artigo</a>
             <hr>
-            <table class="table table-bordered bg-dark tables">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th> ID </th>
@@ -27,7 +27,7 @@
                         <td >
                             
                             <div style="text-align: center;">
-                            <a href="/admin/articles/edit/<%= article.id %>"  class="btn btn-light">Editar</a>
+                            <a href="/admin/articles/edit/<%= article.id %>"  class="btn btn-dark">Editar</a>
                             
                             <form method ="POST" action="/articles/delete" style="display: inline;" onsubmit="wantDelete(event,this)">
                             <input type="hidden" name ="id" value="<%= article.id %>">
