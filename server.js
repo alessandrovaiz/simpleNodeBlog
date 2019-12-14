@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const bodyParser=require('body-parser')
 const connection = require('./database/connection')
+const session = require('express-session');
 
 // models
 const Category = require('./categories/Category');
@@ -14,6 +15,14 @@ const categoriesController = require('./categories/CategoriesController')
 const articlesController = require('./articles/ArticlesController')
 //view engine
 app.set('view engine','ejs');
+
+// Sessions
+
+app.use(session({
+    secret: "mxsFMF#AGAFO#x2",
+    cookie: { maxAge: 30000000 }
+}))
+
 
 //body parser
 app.use(bodyParser.urlencoded({extended:false}));
